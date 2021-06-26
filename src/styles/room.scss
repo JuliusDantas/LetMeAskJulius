@@ -115,3 +115,37 @@
     }
     
 }
+
+@media screen and (max-width: 769px) {
+    #page-room{
+        header {
+            padding: 10px;
+
+            .content {
+                flex-direction: column;
+                gap: 10px;
+
+                > div {
+                    display: flex;
+                    gap: 12px;
+                    flex-direction: column;
+        
+                    button {
+                        height: 48px;
+                    }
+                }
+            }
+        }
+
+        main {
+            .room-title {
+                flex-direction: column;
+                
+            }
+
+            form {
+                padding: 0 10px;
+            }
+        }
+    }
+}
