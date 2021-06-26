@@ -81,3 +81,11 @@
         
     }
 }
+
+@media screen and (max-width: 769px) {
+    .question {
+        padding: 12px;
+        margin: 0 5px;
+        border: 1px solid #835afd;
+    }
+}
