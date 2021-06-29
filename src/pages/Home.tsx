@@ -10,10 +10,13 @@ import { Button } from '../components/Button';
 import '../styles/auth.scss';
 import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
+import { useRoomList } from '../hooks/useRoomList';
 
 
 export function Home(){
     const history = useHistory();
+    const { rooms } = useRoomList();
+    
     const { user, signInWhithGoogle } = useAuth();
     const [roomCode, setroomCode] = useState('');
 
@@ -60,8 +63,18 @@ export function Home(){
                         <img src={googleIconImg} alt="Google" />
                         Crie sua sala com o Google
                     </button>
-                    <div className="separator">ou entre em uma sala</div>
+                    <div className="separator">ou selecione uma sala</div>
                     <form onSubmit={handleJoinRoom}>
+                        <select
+                                onChange={event => setroomCode(event.target.value)}
+                                value={roomCode}
+                                placeholder="Selecione a sala"
+                            >
+                                {rooms && rooms.map(room => 
+                                    <option key={room.id} value={room.id}>{room.title}</option>
+                                )}
+                        </select>
+                        <div className="separator">ou digite o código da sala</div>
                         <input 
                             type="text" 
                             placeholder="digite o código da sala"
@@ -72,6 +85,19 @@ export function Home(){
                             Entrar na sala
                         </Button>
                     </form>
+                    {/* <form onSubmit={handleJoinRoom}>
+                        <select
+                            onChange={event => setroomCode(event.target.value)}
+                            value={roomCode}
+                        >
+                            {rooms && rooms.map(room => 
+                                <option key={room.id} value={room.id}>{room.title}</option>
+                            )}
+                        </select>
+                        <Button type="submit">
+                            Entrar na sala
+                        </Button>
+                    </form> */}
                 </div>
             </main>
         </div>
